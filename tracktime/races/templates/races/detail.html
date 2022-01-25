@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Race Information</title>
+</head>
+<body>
+
+<h1>{{ schedule.race_name }}</h1>
+<ul>
+{% for race in schedule.race_set.all %}
+    <li>{{ race.location }}</li>
+    <li>{{ race.time }}</li>
+{% endfor %}
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'races/style.css' %}">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Race Schedule</title>
+</head>
+<body>
+
+{% if upcoming_scheduled_races %}
+    <ul>
+    {% for schedule in upcoming_scheduled_races %}
+        <li><a href="{% url 'races:detail' schedule.id %}">{{ schedule.race_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No upcoming races.</p>
+{% endif %}
+
+</body>
+</html>
