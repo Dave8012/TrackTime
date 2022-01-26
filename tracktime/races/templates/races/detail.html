@@ -18,6 +18,11 @@
 
         <div class="container">
 
+            <!-- Back Button -->
+            <div class="col-xs-1 mt-3" align="start">
+                <a href="{% url 'races:schedule' %}" class="btn btn-primary btn-sm active" role="button">Back to Schedule</a>
+            </div>
+
             <!-- Schedule Header Column -->
             <div class="col-xs-1 mt-3" align="center">
                 <h1>{{ schedule.race_name }} Race Weekend Information</h1>
@@ -28,32 +33,32 @@
                 <table class="table">
                     <tbody>
                         <tr>
-                            <th class="text-center">Track</th>
-                            <td>{{ race.location }}</td>
+                            <th class="text-center table-secondary">Track</th>
+                            <td class="text-center table-secondary">{{ race.location }}</td>
                         </tr>
                         <tr>
                             <th class="text-center">Date</th>
                             <td>{{ schedule.date }}</td>
                         </tr>
                         <tr>
-                            <th class="text-center">Race Time</th>
-                            <td>{{ race.time }}</td>
+                            <th class="text-center table-secondary">Race Time</th>
+                            <td class="text-center table-secondary">{{ race.time }}</td>
                         </tr>
                         <tr>
                             <th class="text-center">Practice 1 Time</th>
                             <td>{{ race.time_p1 }}</td>
                         </tr>
                         <tr>
-                            <th class="text-center">Practice 2 Time</th>
-                            <td>{{ race.time_p2 }}</td>
+                            <th class="text-center table-secondary">Practice 2 Time</th>
+                            <td class="text-center table-secondary">{{ race.time_p2 }}</td>
                         </tr>
                         <tr>
                             <th class="text-center">Practice 3 Time</th>
                             <td>{{ race.time_p3 }}</td>
                         </tr>
                         <tr>
-                            <th class="text-center">Practice 4 Time</th>
-                            <td>{{ race.time_q }}</td>
+                            <th class="text-center table-secondary">Practice 4 Time</th>
+                            <td class="text-center table-secondary">{{ race.time_q }}</td>
                         </tr>
                     </tbody>
                 </table>
