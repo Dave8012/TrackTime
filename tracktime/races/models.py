@@ -5,7 +5,7 @@ from django.contrib import admin
 from django.utils import timezone
 
 
-# Races Models
+# Races Application Models
 
 # Schedule model
 class Schedule(models.Model):

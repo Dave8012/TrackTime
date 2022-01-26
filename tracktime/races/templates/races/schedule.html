@@ -11,12 +11,20 @@
         <link rel="stylesheet" type="text/css" href="{% static 'races/style.css' %}">
 
         <meta charset="UTF-8">
-        <title>Home</title>
+        <title>Race Schedule</title>
     </head>
     <body>
         {% block body_block %}
 
-        dis is da index
+        {% if upcoming_scheduled_races %}
+        <div class="list-group">
+            {% for schedule in upcoming_scheduled_races %}
+                <a href="{% url 'races:detail' schedule.id %}" class="list-group-item list-group-item-action">{{ schedule.race_name }}</a>
+            {% endfor %}
+        </div>
+        {% else %}
+            <p>No upcoming races.</p>
+        {% endif %}
 
         {% endblock %}
     </body>

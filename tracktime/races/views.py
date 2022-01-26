@@ -3,12 +3,18 @@ from django.http import Http404
 from django.http import HttpResponse
 from django.template import loader
 from django.views import generic
+from django.views.generic.base import TemplateView
 
 from .models import Schedule
 
 
-class IndexView(generic.ListView):
+# Index View
+class IndexView(TemplateView):
     template_name = 'races/index.html'
+
+
+class ScheduleView(generic.ListView):
+    template_name = 'races/schedule.html'
     context_object_name = 'upcoming_scheduled_races'
 
     def get_queryset(self):
@@ -17,7 +23,15 @@ class IndexView(generic.ListView):
         return Schedule.objects.order_by('date')
 
 
+# Detail Page View
 class DetailView(generic.DetailView):
     model = Schedule
     template_name = 'races/detail.html'
+
+
+# About Page View - Using TemplateView as this is a static page
+class AboutView(TemplateView):
+    template_name = 'races/about.html'
+
+
 

@@ -8,3 +8,8 @@ h1 {
     color: #996600;
     font-size: 30px;
 }
+
+.nav a {
+padding: 10px 10px;
+display:inline-block;
+}
