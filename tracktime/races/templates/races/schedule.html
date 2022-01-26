@@ -11,20 +11,25 @@
         <link rel="stylesheet" type="text/css" href="{% static 'races/style.css' %}">
 
         <meta charset="UTF-8">
-        <title>Race Schedule</title>
+        <title>Schedule</title>
     </head>
     <body>
         {% block body_block %}
 
         <div class="container">
 
+            <!-- Schedule Header Column -->
+            <div class="col-xs-1 mt-3" align="center">
+                <h1>2022 Formula 1 Schedule</h1>
+            </div>
+
             <!-- Race Link Table -->
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Race</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Info</th>
+                        <th class="text-center">Race</th>
+                        <th class="text-center">Date</th>
+                        <th class="text-center">Info</th>
                     </tr>
                 </thead>
                 <tbody>

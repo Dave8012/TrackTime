@@ -5,7 +5,7 @@ from django.template import loader
 from django.views import generic
 from django.views.generic.base import TemplateView
 
-from .models import Schedule
+from .models import Schedule, Race
 
 
 # Index View
@@ -14,7 +14,7 @@ class IndexView(generic.ListView):
     context_object_name = 'upcoming_scheduled_races'
 
     def get_queryset(self):
-        """Returns any upcoming Formula 1 races"""
+        """Returns the next upcoming Formula 1 races"""
         return Schedule.objects.order_by('date')[:1]
 
 # Index View
@@ -29,7 +29,16 @@ class ScheduleView(generic.ListView):
 
     def get_queryset(self):
         """Returns any upcoming Formula 1 races"""
-        # return Schedule.objects.order_by('-date')[:5]
+        return Schedule.objects.order_by('date')
+
+
+# Schedule Page View
+class TimesView(generic.ListView):
+    template_name = 'races/times.html'
+    context_object_name = 'upcoming_scheduled_races'
+
+    def get_queryset(self):
+        """Returns any upcoming Formula 1 races"""
         return Schedule.objects.order_by('date')
 
 

@@ -8,4 +8,5 @@ urlpatterns = [
     path('<int:pk>/', views.DetailView.as_view(), name='detail'),
     path('about/', views.AboutView.as_view(), name='about'),
     path('schedule/', views.ScheduleView.as_view(), name='schedule'),
+    path('times/', views.TimesView.as_view(), name='times')
 ]

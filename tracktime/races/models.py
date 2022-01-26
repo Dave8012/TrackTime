@@ -30,6 +30,10 @@ class Race(models.Model):
     schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE)
     location = models.CharField(max_length=100)
     time = models.DateTimeField('race time')
+    time_p1 = models.DateTimeField('p1 time', default=datetime.datetime.now)
+    time_p2 = models.DateTimeField('p2 time', default=datetime.datetime.now)
+    time_p3 = models.DateTimeField('p3 time', default=datetime.datetime.now)
+    time_q = models.DateTimeField('q time', default=datetime.datetime.now)
 
     def __str__(self):
         return self.location
