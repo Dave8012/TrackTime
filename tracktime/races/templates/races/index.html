@@ -16,19 +16,21 @@
     <body>
         {% block body_block %}
 
-        <!-- Welcome Message -->
+
         <div class="container">
-            <div class="col-xs-1" align="center">
+            <!-- Welcome Message Column -->
+            <div class="col-xs-1 mt-3" align="center">
                 <h1>Welcome to TrackTime!</h1>
                 <h4>Need help figuring out when the next F1 race starts? Check out the schedule!</h4>
             </div>
 
+            <!-- Upcoming Race Info Columns -->
             <div class="mt-4 row gx-4">
-                <div class="col-lg-5 border border-success rounded-start">
+                <div class="col-lg-4 rounded-start p-3 mb-2 bg-info text-white">
                     <h2 align="center">Next Race:</h2>
                 </div>
 
-                <div class="col-lg-7 border border-info rounded-end">
+                <div class="col-lg-8 rounded-end p-3 mb-2 bg-secondary text-white">
                     {% if upcoming_scheduled_races %}
                         {% for schedule in upcoming_scheduled_races %}
                             <h2 align="center">{{ schedule.race_name }}</h2>
@@ -37,17 +39,22 @@
                 </div>
             </div>
 
-            <div class="mt-4 row gx-4">
-                <div class="col-lg-4 border border-success rounded-pill">
+            <!-- Misc Info Columns -->
+            <div class="mt-4 row gx-5">
+                <div class="col-lg-4 border-success p-3 mb-2 bg-light text-dark">
                     <h2 align="center">Why?</h2>
+                    <p align="center">I like F1. Every time I want to find the race time, I end up doing all sorts of mental math comparing timezones to make sure I get it right. I'm hoping this website can be used to avoid additional headaches by providing all race, practice, and qualifying times in your local timezone.</p>
+                    <p align="center"> I created this as a learning experience using Python/Django for the first time.</p>
                 </div>
 
-                <div class="col-lg-4 border border-info rounded-pill">
+                <div class="col-lg-4 border-info p-3 mb-2 bg-light text-dark">
                     <h2 align="center">News</h2>
+                    <p align="center">No news yet.</p>
                 </div>
 
-                <div class="col-lg-4 border border-warning rounded-pill">
+                <div class="col-lg-4 border-warning p-3 mb-2 bg-light text-dark">
                     <h2 align="center">Updates</h2>
+                    <p align="center">Too many to list.</p>
                 </div>
             </div>
         </div>

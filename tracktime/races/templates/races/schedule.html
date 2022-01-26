@@ -16,15 +16,34 @@
     <body>
         {% block body_block %}
 
-        {% if upcoming_scheduled_races %}
-        <div class="list-group">
-            {% for schedule in upcoming_scheduled_races %}
-                <a href="{% url 'races:detail' schedule.id %}" class="list-group-item list-group-item-action">{{ schedule.race_name }}</a>
-            {% endfor %}
+        <div class="container">
+
+            <!-- Race Link Table -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Race</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Info</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if upcoming_scheduled_races %}
+                        {% for schedule in upcoming_scheduled_races %}
+                            <tr>
+                                <td>{{ schedule.race_name }}</td>
+                                <td>{{ schedule.date }}</td>
+                                <td><a href="{% url 'races:detail' schedule.id %}" class="btn btn-primary btn-sm enabled" tabindex="-1" role="button" aria-disabled="true">View Race Weekend</a></td>
+                            </tr>
+                            {% endfor %}
+                    {% else %}
+                        No upcoming races.
+                    {% endif %}
+                </tbody>
+            </table>
+
+
         </div>
-        {% else %}
-            <p>No upcoming races.</p>
-        {% endif %}
 
         {% endblock %}
     </body>
