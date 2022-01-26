@@ -9,10 +9,20 @@ from .models import Schedule
 
 
 # Index View
-class IndexView(TemplateView):
+class IndexView(generic.ListView):
     template_name = 'races/index.html'
+    context_object_name = 'upcoming_scheduled_races'
+
+    def get_queryset(self):
+        """Returns any upcoming Formula 1 races"""
+        return Schedule.objects.order_by('date')[:1]
+
+# Index View
+# class IndexView(TemplateView):
+#     template_name = 'races/index.html'
 
 
+# Schedule Page View
 class ScheduleView(generic.ListView):
     template_name = 'races/schedule.html'
     context_object_name = 'upcoming_scheduled_races'

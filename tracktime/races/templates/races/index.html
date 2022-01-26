@@ -16,7 +16,41 @@
     <body>
         {% block body_block %}
 
-        dis is da index
+        <!-- Welcome Message -->
+        <div class="container">
+            <div class="col-xs-1" align="center">
+                <h1>Welcome to TrackTime!</h1>
+                <h4>Need help figuring out when the next F1 race starts? Check out the schedule!</h4>
+            </div>
+
+            <div class="mt-4 row gx-4">
+                <div class="col-lg-5 border border-success rounded-start">
+                    <h2 align="center">Next Race:</h2>
+                </div>
+
+                <div class="col-lg-7 border border-info rounded-end">
+                    {% if upcoming_scheduled_races %}
+                        {% for schedule in upcoming_scheduled_races %}
+                            <h2 align="center">{{ schedule.race_name }}</h2>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="mt-4 row gx-4">
+                <div class="col-lg-4 border border-success rounded-pill">
+                    <h2 align="center">Why?</h2>
+                </div>
+
+                <div class="col-lg-4 border border-info rounded-pill">
+                    <h2 align="center">News</h2>
+                </div>
+
+                <div class="col-lg-4 border border-warning rounded-pill">
+                    <h2 align="center">Updates</h2>
+                </div>
+            </div>
+        </div>
 
         {% endblock %}
     </body>
