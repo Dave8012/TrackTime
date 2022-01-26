@@ -32,6 +32,7 @@
                         <th class="text-center">Date</th>
                         <th class="text-center">Time</th>
                         <th class="text-center">Location</th>
+                        <th class="text-center">Other Session Times</th>
                     </tr>
                 </thead>
 
@@ -44,6 +45,12 @@
                                     <td>{{ schedule.date }}</td>
                                     <td>{{ race.time }} CST</td>
                                     <td>{{ race.location }}</td>
+                                    <td>
+                                        <p class="mt-0 mb-0 text-start"><b>Practice 1:</b> {{ race.time_p1}}</p>
+                                        <p class="mt-0 mb-0 text-start"><b>Practice 2:</b> {{ race.time_p2}}</p>
+                                        <p class="mt-0 mb-0 text-start"><b>Practice 3:</b> {{ race.time_p3}}</p>
+                                        <p class="mt-0 mb-0 text-start"><b>Qualifying:</b> {{ race.time_q}}</p>
+                                    </td>
                                 </tr>
                             {% endfor %}
                         {% endfor %}

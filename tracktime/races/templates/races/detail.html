@@ -16,13 +16,50 @@
     <body>
         {% block body_block %}
 
-        <h1>{{ schedule.race_name }}</h1>
-        <ul>
+        <div class="container">
+
+            <!-- Schedule Header Column -->
+            <div class="col-xs-1 mt-3" align="center">
+                <h1>{{ schedule.race_name }} Race Weekend Information</h1>
+            </div>
+
+            <!-- Specific Race Info Table -->
             {% for race in schedule.race_set.all %}
-                <li>{{ race.location }}</li>
-                <li>{{ race.time }}</li>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th class="text-center">Track</th>
+                            <td>{{ race.location }}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">Date</th>
+                            <td>{{ schedule.date }}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">Race Time</th>
+                            <td>{{ race.time }}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">Practice 1 Time</th>
+                            <td>{{ race.time_p1 }}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">Practice 2 Time</th>
+                            <td>{{ race.time_p2 }}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">Practice 3 Time</th>
+                            <td>{{ race.time_p3 }}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">Practice 4 Time</th>
+                            <td>{{ race.time_q }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             {% endfor %}
-        </ul>
+
+        </div>
 
         {% endblock %}
     </body>
