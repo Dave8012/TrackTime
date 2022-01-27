@@ -37,14 +37,6 @@
                             <td class="text-center table-secondary">{{ race.location }}</td>
                         </tr>
                         <tr>
-                            <th class="text-center">Date</th>
-                            <td>{{ schedule.date }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-center table-secondary">Race Time</th>
-                            <td class="text-center table-secondary">{{ race.time }}</td>
-                        </tr>
-                        <tr>
                             <th class="text-center">Practice 1 Time</th>
                             <td>{{ race.time_p1 }}</td>
                         </tr>
@@ -57,8 +49,12 @@
                             <td>{{ race.time_p3 }}</td>
                         </tr>
                         <tr>
-                            <th class="text-center table-secondary">Practice 4 Time</th>
+                            <th class="text-center table-secondary">Qualifying Time</th>
                             <td class="text-center table-secondary">{{ race.time_q }}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-center">Race Time</th>
+                            <td>{{ race.time }}</td>
                         </tr>
                     </tbody>
                 </table>
