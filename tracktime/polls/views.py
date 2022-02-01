@@ -3,8 +3,11 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
+from django.template import RequestContext
+import datetime
 
 from .models import Choice, Question
+from .forms import QuestionForm, ChoiceForm
 
 
 # OLD WAY OF DOING THIS
@@ -32,7 +35,7 @@ class IndexView(generic.ListView):
         """Return the last five published questions."""
         return Question.objects.filter(
             pub_date__lte=timezone.now()
-        ).order_by('-pub_date')[:5]
+        ).order_by('-pub_date')
 
 
 class DetailView(generic.DetailView):
@@ -66,4 +69,44 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+
+# def submit(request):
+#     context = {}
+#
+#     print(request.POST)
+#
+#     # Create object of the form
+#     form = QuestionForm(request.POST or None, initial={'pub_date': datetime.datetime.now()})
+#     #form.fields['pub_date'].initial = datetime.datetime.now()
+#
+#     print("after form creation)")
+#
+#     print(form.is_valid())
+#     # Check if form is valid data
+#     if form.is_valid():
+#         # Save the form data to Question model
+#         print("got here submit in views.py")
+#         form.save()
+#
+#     context['form'] = form
+#     return render(request, 'polls/index.html', context)
+
+
+def submit_question(request):
+
+    if request.method == 'POST':
+        form = QuestionForm(request.POST)
+        if form.is_valid():
+
+            u = form.save()
+            polls = Question.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date')
+
+            return render(request, '/polls/index.html', {'polls': polls})
+
+        else:
+            form_class = QuestionForm
+
+        return render(request, 'polls/index.html', {'form': form_class})
+
 
