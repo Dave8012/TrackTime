@@ -22,66 +22,63 @@
 
             <!-- Polls Header Column -->
             <div class="col-xs-1 mt-3" align="center">
-                <h1>Race Polls</h1>
+                <h1>Community Polls</h1>
                 <h4>Vote on a poll or create your own!</h4>
             </div>
 
-            {% if latest_question_list %}
-                <!-- Active Polls Header -->
-                <div class="mt-5 row gx-4">
-                    <div class="col-lg-6 p-2 mb-2 rounded-start bg-success text-white">
-                        <h2 align="center">Active Polls:</h2>
+            <!-- Active Polls Header -->
+            <div class="mt-5 row gx-4">
+                <div class="col-lg-6 p-2 mb-2 rounded-start bg-success text-white">
+                    <h2 align="center">Active Polls:</h2>
 
-                        {% for question in latest_question_list %}
-                            <!--<div class="col-lg-12 p-3 mb-2 rounded-start bg-secondary text-white">-->
-                            <div class="mt-2 mb-2 panel-body" align="center">
-                                <a href="{% url 'polls:detail' question.id %}" class="btn btn-primary btn-sm active" role="button">{{ question.question_text }}</a>
-                            </div>
-                        {% endfor %}
-
-                    </div>
-
-                    <div class="col-lg-6 p-2 mb-2 rounded-end bg-info text-white">
-                        <h2 align="center">Submit A Question:</h2>
-
-<!--                        <div class="form-group">-->
-<!--                            <form action="{% url 'polls:submitQuestion' %}" method="post">-->
-<!--                                {% csrf_token %}-->
-<!--                                <label for="QuestionTextArea">Question:</label>-->
-<!--                                <textarea class="form-control" id="pollQuestionTextarea" rows="3"></textarea>-->
-<!--                                <input type="submit" value="Submit">-->
-<!--                            </form>-->
-<!--                        </div>-->
-
-                        <form action="{% url 'polls:submitQuestion' %}" method="post">
-                            {% csrf_token %}
-                            <table>
-                                {{form.as_table}}
-                            </table>
-                            <input type="submit" value="Submit" />
-                        </form>
-
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Option 1:</label>
-                            <textarea class="form-control" id="pollOptionOneTextarea" rows="1"></textarea>
+                    {% for question in latest_question_list %}
+                        <!--<div class="col-lg-12 p-3 mb-2 rounded-start bg-secondary text-white">-->
+                        <div class="mt-2 mb-2 panel-body" align="center">
+                            <a href="{% url 'polls:detail' question.id %}" class="btn btn-primary btn-sm active" role="button">{{ question.question_text }}</a>
                         </div>
+                    {% endfor %}
 
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Option 2:</label>
-                            <textarea class="form-control" id="pollOptionTwoTextarea" rows="1"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Option 3:</label>
-                            <textarea class="form-control" id="pollOptionThreeTextarea" rows="1"></textarea>
-                        </div>
-
-
-                    </div>
                 </div>
-            {% else %}
-                <p>No polls are available.</p>
-            {% endif %}
+
+                <div class="col-lg-6 p-2 mb-2 rounded-end bg-info text-white">
+                    <h2 align="center">Submit A New Poll:</h2>
+
+                    <form action="{% url 'polls:submitQuestion' %}" method="post">
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                {{ form.question.errors }}
+                                <label for="id_text">Question:</label>
+                                {{ form.text }}
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                {{ form.message.errors }}
+                                <label for="id_option_1">Option 1:</label>
+                                {{ form.option_1 }}
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                {{ form.sender.errors }}
+                                <label for="id_option_2">Option 2:</label>
+                                {{ form.option_2 }}
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                {{ form.cc_myself.errors }}
+                                <label for="id_option_3">Option 3</label>
+                                {{ form.option_3 }}
+                            </div>
+                        </div>
+                        <input type="submit" value="Create Poll" />
+                    </form>
+
+                </div>
+            </div>
 
         </div>
 
