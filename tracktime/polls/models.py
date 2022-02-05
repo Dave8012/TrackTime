@@ -1,6 +1,7 @@
 import datetime
 from django.contrib import admin
 from django.db import models
+from django import forms
 from django.utils import timezone
 
 
@@ -31,4 +32,14 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.choice_text
+
+
+class QuestionForm(forms.Form):
+    text = forms.CharField(label='Question', max_length=100)
+
+
+class ChoiceForm(forms.Form):
+    class Meta:
+        model = Choice
+        fields = ['question', 'choice_text']
 
