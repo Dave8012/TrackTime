@@ -36,6 +36,9 @@ class Choice(models.Model):
 
 class QuestionForm(forms.Form):
     text = forms.CharField(label='Question', max_length=100)
+    option_1 = forms.CharField(label='Option 1', max_length=50)
+    option_2 = forms.CharField(label='Option 2', max_length=50)
+    option_3 = forms.CharField(label='Option 3', max_length=50)
 
 
 class ChoiceForm(forms.Form):

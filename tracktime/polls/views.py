@@ -6,25 +6,8 @@ from django.utils import timezone
 from django.template import RequestContext
 import datetime
 
-from .models import Choice, Question, QuestionForm, ChoiceForm
+from .models import Choice, Question, QuestionForm
 
-
-# OLD WAY OF DOING THIS
-# Create your views here.
-# def index(request):
-#     latest_question_list = Question.objects.order_by('-pub_date')[:5]
-#     context = {'latest_question_list': latest_question_list}
-#     return render(request, 'polls/index.html', context)
-#
-#
-# def detail(request, question_id):
-#     question = get_object_or_404(Question, pk=question_id)
-#     return render(request, 'polls/detail.html', {'question': question})
-#
-#
-# def results(request, question_id):
-#     question = get_object_or_404(Question, pk=question_id)
-#     return render(request, 'polls/results.html', {'question': question})
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
@@ -75,61 +58,6 @@ def vote(request, question_id):
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
 
-# def submit(request):
-#     context = {}
-#
-#     print(request.POST)
-#
-#     # Create object of the form
-#     form = QuestionForm(request.POST or None, initial={'pub_date': datetime.datetime.now()})
-#     #form.fields['pub_date'].initial = datetime.datetime.now()
-#
-#     print("after form creation)")
-#
-#     print(form.is_valid())
-#     # Check if form is valid data
-#     if form.is_valid():
-#         # Save the form data to Question model
-#         print("got here submit in views.py")
-#         form.save()
-#
-#     context['form'] = form
-#     return render(request, 'polls/index.html', context)
-
-
-# def submit_question(request):
-#
-#     if request.method == 'POST':
-#         form = QuestionForm(request.POST)
-#         if form.is_valid():
-#
-#             u = form.save()
-#             polls = Question.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date')
-#             # polls = Question.objects.filter(pub_date__lte=timezone.now())
-#
-#             # return render(request, '/polls/index.html', {'polls': polls})
-#             return HttpResponseRedirect(reverse('polls:index'))
-#
-#         else:
-#             form_class = QuestionForm
-#
-#         print("not valid :(")
-#         # return render(request, 'polls/index.html', {'form': form_class})
-#         return HttpResponseRedirect(reverse('polls:index'))
-
-# def submit_question(request):
-#
-#     if request.method == 'POST':
-#         form = QuestionForm(request.POST)
-#
-#         u = form.save()
-#         polls = Question.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date')
-#         # polls = Question.objects.filter(pub_date__lte=timezone.now())
-#
-#         # return render(request, '/polls/index.html', {'polls': polls})
-#         return HttpResponseRedirect(reverse('polls:index'))
-
-
 def submit_question(request):
 
     if request.method == 'POST':
@@ -139,8 +67,18 @@ def submit_question(request):
         if form.is_valid():
 
             text = form.cleaned_data['text']
+            option_1 = form.cleaned_data['option_1']
+            option_2 = form.cleaned_data['option_2']
+            option_3 = form.cleaned_data['option_3']
+            option_list = [option_1, option_2, option_3]
             q = Question(question_text=text, pub_date=datetime.datetime.now())
             q.save()
+            print(q.pk)
+
+            for option in option_list:
+                print(option)
+                c = Choice(question=q, choice_text=option, votes=0)
+                c.save()
 
             return HttpResponseRedirect(reverse('polls:index'))
 

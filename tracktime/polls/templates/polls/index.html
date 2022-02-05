@@ -26,12 +26,6 @@
                 <h4>Vote on a poll or create your own!</h4>
             </div>
 
-            <form action="{% url 'polls:submitQuestion' %}" method="post">
-                {% csrf_token %}
-                {{ form }}
-                <input type="submit" value="Submit" />
-            </form>
-
             {% if latest_question_list %}
                 <!-- Active Polls Header -->
                 <div class="mt-5 row gx-4">
@@ -50,30 +44,11 @@
                     <div class="col-lg-6 p-2 mb-2 rounded-end bg-info text-white">
                         <h2 align="center">Submit A Question:</h2>
 
-<!--                        <div class="form-group">-->
-<!--                            <form action="{% url 'polls:submitQuestion' %}" method="post">-->
-<!--                                {% csrf_token %}-->
-<!--                                <label for="QuestionTextArea">Question:</label>-->
-<!--                                <textarea class="form-control" id="pollQuestionTextarea" rows="3"></textarea>-->
-<!--                                <input type="submit" value="Submit">-->
-<!--                            </form>-->
-<!--                        </div>-->
-
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Option 1:</label>
-                            <textarea class="form-control" id="pollOptionOneTextarea" rows="1"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Option 2:</label>
-                            <textarea class="form-control" id="pollOptionTwoTextarea" rows="1"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Option 3:</label>
-                            <textarea class="form-control" id="pollOptionThreeTextarea" rows="1"></textarea>
-                        </div>
-
+                        <form action="{% url 'polls:submitQuestion' %}" method="post">
+                            {% csrf_token %}
+                            {{ form }}
+                            <input type="submit" value="Submit" />
+                        </form>
 
                     </div>
                 </div>
