@@ -8,7 +8,7 @@
           rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
           crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="{% static 'races/style.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
         <!--<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">-->
 
         <meta charset="UTF-8">
@@ -47,34 +47,36 @@
                         {% csrf_token %}
                         {{ form.non_field_errors }}
                         <div class="input-group mb-3">
-                            <div class="input-group-prepend">
+                            <div class="form-group">
                                 {{ form.question.errors }}
                                 <label for="id_text">Question:</label>
                                 {{ form.text }}
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <div class="input-group-prepend">
+                            <div class="form-group">
                                 {{ form.message.errors }}
                                 <label for="id_option_1">Option 1:</label>
                                 {{ form.option_1 }}
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <div class="input-group-prepend">
+                            <div class="form-group">
                                 {{ form.sender.errors }}
                                 <label for="id_option_2">Option 2:</label>
                                 {{ form.option_2 }}
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <div class="input-group-prepend">
+                            <div class="form-group">
                                 {{ form.cc_myself.errors }}
-                                <label for="id_option_3">Option 3</label>
+                                <label for="id_option_3">Option 3:</label>
                                 {{ form.option_3 }}
                             </div>
                         </div>
-                        <input type="submit" value="Create Poll" />
+                        <div class="mt-2 mb-2 panel-body" align="center">
+                            <input class="btn btn-primary btn-sm active" type="submit" value="Create Poll" />
+                        </div>
                     </form>
 
                 </div>
