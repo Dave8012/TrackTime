@@ -1,3 +1,5 @@
+import datetime
+
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 from django.http import HttpResponse
@@ -15,7 +17,9 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Returns the next upcoming Formula 1 races"""
-        return Schedule.objects.order_by('date')[:1]
+        return Schedule.objects.filter(date__gt=datetime.datetime.today()).order_by('date')[:1]
+        # return Schedule.objects.order_by('date')[:1]
+
 
 # Index View
 # class IndexView(TemplateView):
