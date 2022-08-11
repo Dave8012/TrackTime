@@ -19,9 +19,11 @@
 
         <div class="container">
 
-            <!-- Back Button -->
+            <!-- Back Button & Results Button-->
             <div class="col-xs-1 mt-3" align="start">
                 <a href="{% url 'polls:index' %}" class="btn btn-primary btn-sm active" role="button">Back to Polls</a>
+                <a href="{% url 'polls:results' question.id %}" class="btn btn-primary btn-sm active" role="button">
+                    Poll Results</a>
             </div>
 
             <!-- Detail Header Column -->
